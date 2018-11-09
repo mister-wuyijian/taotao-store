@@ -75,7 +75,7 @@ public class UploadController {
          */
         Map<String, Object> map = new HashMap<String,Object>();
         map.put("error", 0);  // group1/M00/00/00/wKjjg1uilbOAHwNyAAAb07dn2KM385.jpg
-        map.put("url", "http://image.taotao.com/"+uploadinfos[0]+"/"+uploadinfos[1]);
+        map.put("url", "http://images.taotao.com/"+uploadinfos[0]+"/"+uploadinfos[1]);
         map.put("height", 100);
         map.put("width", 100);
 
