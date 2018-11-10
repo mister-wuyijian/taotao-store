@@ -22,6 +22,7 @@ public class PageController {
 
     @RequestMapping("/")
     public String index(){
+        System.out.println("I am coming in");
         return "index";
     }
 }
