@@ -44,8 +44,7 @@ public class ItemController {
         Map<String  , Object> map = new HashMap<>();
         map.put("total" , pageInfo.getTotal());
         map.put("rows" , pageInfo.getList());
-
-
+        
         return map;
     }
 
