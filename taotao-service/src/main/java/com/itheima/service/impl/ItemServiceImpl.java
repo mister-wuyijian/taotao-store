@@ -9,6 +9,7 @@ import com.itheima.pojo.Item;
 import com.itheima.pojo.ItemDesc;
 import com.itheima.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsMessagingTemplate;
 
 import java.util.Date;
 import java.util.List;
@@ -31,6 +32,9 @@ public class ItemServiceImpl implements ItemService{
     @Autowired
     private ItemDescMapper itemDescMapper;
 
+    @Autowired
+    private JmsMessagingTemplate jms;
+
     @Override
     public int addItem(Item item, String desc) {
         long id = (long) (System.currentTimeMillis() + Math.random() * 10000);
@@ -49,6 +53,8 @@ public class ItemServiceImpl implements ItemService{
 
 
         itemDescMapper.insertSelective(itemDesc);
+        jms.convertAndSend("item_save",id);
+        System.out.println("添加了一条数据");
 
         return result;
     }
@@ -60,5 +66,10 @@ public class ItemServiceImpl implements ItemService{
         List<Item> list = itemMapper.select(null);
 
         return new PageInfo<Item>(list);
+    }
+
+    @Override
+    public Item getItemById(long id) {
+        return itemMapper.selectByPrimaryKey(id);
     }
 }

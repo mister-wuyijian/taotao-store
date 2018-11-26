@@ -10,8 +10,11 @@ package com.itheima.controller;
  */
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.itheima.pojo.Item;
+import com.itheima.pojo.Page;
 import com.itheima.service.SearchService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,12 +27,14 @@ public class SearchController {
 
 
     @RequestMapping("/search")
-    public String search(String q , @RequestParam(defaultValue = "1") int page){
+    public String search(Model model,String q , @RequestParam(defaultValue = "1") int page){
 
         System.out.println("要跳转到搜索页面了 ==="+q);
 
-        searchService.searchItem(q , page);
-
+        Page<Item> pageItem=searchService.searchItem(q , page);
+        model.addAttribute("query",q);
+        model.addAttribute("page",pageItem);
+        model.addAttribute("totalPages",pageItem.getTotal());
         return "search";
     }
 }

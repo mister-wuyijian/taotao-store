@@ -31,11 +31,12 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     compile group: 'com.google.code.gson', name: 'gson', version: '2.2.4'
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
-    compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '1.5.16.RELEASE'
+
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-solr
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-solr', version: '1.5.10.RELEASE'
-
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-activemq
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-activemq', version: '1.5.10.RELEASE'
 
     compile project(":taotao-search-interface")
+    compile project(":taotao-mapper")
 }

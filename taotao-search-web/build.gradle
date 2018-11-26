@@ -30,8 +30,7 @@ dependencies {
     //compile project(':taotao-service')
 // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
-    compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '1.5.16.RELEASE'
 
-    compile project(":taotao-search-service")
+
+    compile project(":taotao-search-interface")
 }
