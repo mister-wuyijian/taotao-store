@@ -26,6 +26,9 @@ dependencies {
 
 //数据库依赖
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.17'
-
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-activemq
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-activemq', version: '1.5.10.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-freemarker
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-freemarker', version: '1.5.10.RELEASE'
     compile project(":taotao-service")
 }
