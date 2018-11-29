@@ -1,7 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -32,23 +28,17 @@
 				HM:'0'
 			}
 		};
-
-        //添加商品到购物车
-        function addToCart(){
-
-            //1.获取购买数量
-            var num = $("#buy-num").val();
-
-            //添加到购物车
-            location.href="http://www.taotao.com/cart/add/${item.id}.html?num="+num;
-
-        }
+		
+		function submitItem(){
+			var num = $("#buy-num").val();
+    		window.location.href= "http://www.taotao.com/cart/${item.id}.html?num="+num;
+    	}
 	</script>
 </head>
 <body version="140120">
 <script type="text/javascript">try{(function(flag){ if(!flag){return;} if(window.location.hash == '#m'){var exp = new Date();exp.setTime(exp.getTime() + 30 * 24 * 60 * 60 * 1000);document.cookie = "pcm=1;expires=" + exp.toGMTString() + ";path=/;domain=jd.com";return;}else{var cook=document.cookie.match(new RegExp("(^| )pcm=([^;]*)(;|$)"));var flag=false;if(cook&&cook.length>2&&unescape(cook[2])=="1"){flag=true;}} var userAgent = navigator.userAgent; if(userAgent){ userAgent = userAgent.toUpperCase();if(userAgent.indexOf("PAD")>-1){return;} var mobilePhoneList = ["IOS","IPHONE","ANDROID","WINDOWS PHONE"];for(var i=0,len=mobilePhoneList.length;i<len;i++){ if(userAgent.indexOf(mobilePhoneList[i])>-1){var url="http://m.jd.com/product/"+pageConfig.product.skuid+".html";if(flag){pageConfig.product.showtouchurl=true;}else{window.location.href = url;}break;}}}})((function(){var json={"6881":3,"1195":3,"10011":3,"6980":3,"12360":3};if(json[pageConfig.product.cat[0]+""]==1||json[pageConfig.product.cat[1]+""]==2||json[pageConfig.product.cat[2]+""]==3){return false;}else{return true;}})());}catch(e){}</script>
 <!-- header start -->
-<jsp:include page="../commons/header.jsp" />
+<#include "header.jsp" />
 <!-- header end -->
 <div class="w">
 	<div class="breadcrumb">
@@ -68,11 +58,11 @@
 	<li id="summary-price">
 		<div class="dt">淘&nbsp;淘&nbsp;价：</div>
 		<div class="dd">
-			<strong class="p-price"  id="jd-price">￥<fmt:formatNumber groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" value="${item.price / 100 }"/> </strong>
+			<strong class="p-price"  id="jd-price">￥${item.price / 100 } </strong>
 			<a id="notice-downp" href="#none" target="_blank" clstag="shangpin|keycount|product|jiangjia">(降价通知)</a>
 		</div>
 	</li>
-	<li id="summary-market"><div class="dt">商品编号：</div><div class="dd"><span>${item.id }</span></div></li>
+	<li id="summary-market"><div class="dt">商品编号：</div><div class="dd"><span>${item.id?c }</span></div></li>
 	<li id="summary-grade">
 		<div class="dt">商品评分：</div>
 		<div class="dd">
@@ -146,8 +136,7 @@
 		        <li id="choose-result"><div class="dt"></div><div class="dd"></div></li>
 				<li id="choose-btns">
 					<div id="choose-btn-append"  class="btn">
-							<%--<a class="btn-append " id="InitCartUrl" href="http://www.taotao.com/cart/add/${item.id}.html" clstag="shangpin|keycount|product|initcarturl">加入购物车<b></b></a>--%>
-								<a class="btn-append " id="InitCartUrl" href="javascript:addToCart()" clstag="shangpin|keycount|product|initcarturl">加入购物车<b></b></a>
+							<a class="btn-append " id="InitCartUrl" href="http://www.taotao.com/cart/add/${item.id}.html" clstag="shangpin|keycount|product|initcarturl">加入购物车<b></b></a>
 					</div>
 					<div id="choose-btn-easybuy" class="btn"></div>
 					<div id="choose-btn-divide" class="btn"></div>
@@ -166,20 +155,11 @@
 				<a href="javascript:;" class="spec-control" id="spec-backward"></a>
 				<div class="spec-items">
 					<ul class="lh">   
-						<c:forEach items="${item.images}" var="pic" varStatus="status">  
-							<c:choose>
-								<c:when test="${status.index == 0 }">
-									<li>
-										<img data-img="1" class="img-hover"  alt="${item.title}" src="${pic}" width="50" height="50" data-url="${pic}">
-									</li>
-								</c:when>
-								<c:otherwise>
-									<li>
-										<img data-img="1" alt="${item.title}" src="${pic}" width="50" height="50" data-url="${pic}">
-									</li>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
+						<#list item.images as pic>
+							<li>
+								<img data-img="1" class="img-hover"  alt="${item.title}" src="${pic}" width="50" height="50" data-url="${pic}">
+							</li>
+						</#list>
 					</ul>
 				</div>
 			</div>
@@ -313,7 +293,7 @@
 	<span class="clr"></span>
 </div>
 <!-- footer start -->
-<jsp:include page="../commons/footer.jsp" />
+<#include "footer.jsp" />
 <!-- footer end -->
 <script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
 <script type="text/javascript" src="/js/lib-v1.js"></script>

@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/taotao-cart-interface.iml" filepath="$PROJECT_DIR$/.idea/modules/taotao-cart-interface.iml" group="taotao-cart-interface" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/taotao-cart-interface/taotao-cart-interface_main.iml" filepath="$PROJECT_DIR$/.idea/modules/taotao-cart-interface/taotao-cart-interface_main.iml" group="taotao-cart-interface" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/taotao-cart-interface/taotao-cart-interface_test.iml" filepath="$PROJECT_DIR$/.idea/modules/taotao-cart-interface/taotao-cart-interface_test.iml" group="taotao-cart-interface" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/taotao-cart-service.iml" filepath="$PROJECT_DIR$/.idea/modules/taotao-cart-service.iml" group="taotao-cart-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/taotao-cart-service/taotao-cart-service_main.iml" filepath="$PROJECT_DIR$/.idea/modules/taotao-cart-service/taotao-cart-service_main.iml" group="taotao-cart-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/taotao-cart-service/taotao-cart-service_test.iml" filepath="$PROJECT_DIR$/.idea/modules/taotao-cart-service/taotao-cart-service_test.iml" group="taotao-cart-service" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/taotao-common.iml" filepath="$PROJECT_DIR$/.idea/modules/taotao-common.iml" group="taotao-common" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/taotao-common/taotao-common_main.iml" filepath="$PROJECT_DIR$/.idea/modules/taotao-common/taotao-common_main.iml" group="taotao-common" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/taotao-common/taotao-common_test.iml" filepath="$PROJECT_DIR$/.idea/modules/taotao-common/taotao-common_test.iml" group="taotao-common" />

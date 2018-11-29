@@ -12,6 +12,10 @@
       <entry name="!?*.clj" />
     </wildcardResourcePatterns>
     <bytecodeTargetLevel>
+      <module name="taotao-cart-interface_main" target="1.8" />
+      <module name="taotao-cart-interface_test" target="1.8" />
+      <module name="taotao-cart-service_main" target="1.8" />
+      <module name="taotao-cart-service_test" target="1.8" />
       <module name="taotao-common_main" target="1.8" />
       <module name="taotao-common_test" target="1.8" />
       <module name="taotao-interface_main" target="1.8" />
