@@ -3,6 +3,7 @@ package com.itheima.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.itheima.Utils.Util;
 import com.itheima.mapper.ItemMapper;
 import com.itheima.pojo.Cart;
 import com.itheima.pojo.Item;
@@ -25,6 +26,7 @@ import java.util.List;
 @Service
 public class CartServiceImpl implements CartService{
 
+    private  final static String CART_KEY="iitcart_";
     @Autowired
     private ItemMapper itemMapper;
 
@@ -34,7 +36,6 @@ public class CartServiceImpl implements CartService{
     @Override
     public void addItemToCart(long userId, long id, int num) {
         System.out.println("要添加商品到购物车了");
-
         List<Cart> cartList= queryCartByUserId(userId);
 
         Cart c = null;
@@ -76,13 +77,13 @@ public class CartServiceImpl implements CartService{
 
         System.out.println("现在购物车的商品有:" + json);
 
-        redisTemplate.opsForValue().set("iitcart_"+userId , json);
+        redisTemplate.opsForValue().set(CART_KEY+userId , json);
 
     }
 
     @Override
     public List<Cart> queryCartByUserId(long userId) {
-        String json=redisTemplate.opsForValue().get("iitcart_"+userId);
+        String json=redisTemplate.opsForValue().get(CART_KEY+userId);
 
         if(!StringUtils.isEmpty(json)){
             //2. 把json字符串转化成list<Cart>
@@ -94,4 +95,31 @@ public class CartServiceImpl implements CartService{
         //如果是空，表示是第一次来添加商品到购物车，所以redis里面不会有任何数据
         return new ArrayList<Cart>();
     }
+
+    @Override
+    public void updateItemFromCart(long userId, long itemId, int num) {
+        List<Cart>  cartList= Util.getCartList(redisTemplate,CART_KEY+userId);
+        for (Cart cart : cartList) {
+            if(cart.getItemId()==itemId){
+                cart.setNum(num);
+                cart.setUpdate(new Date());
+                break;
+            }
+        }
+       Util.saveCartlist(cartList,redisTemplate,CART_KEY+userId);
+    }
+
+    @Override
+    public void deleteItemFromCart(long userId, long itemId) {
+        List<Cart>  cartList= Util.getCartList(redisTemplate,CART_KEY+userId);
+        for (Cart cart : cartList) {
+            if(cart.getItemId()==itemId){
+                cartList.remove(cart);
+                break;
+            }
+        }
+        Util.saveCartlist(cartList,redisTemplate,CART_KEY+userId);
+    }
+
+
 }
