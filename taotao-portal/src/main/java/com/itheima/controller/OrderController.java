@@ -4,8 +4,6 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.itheima.pojo.Cart;
 import com.itheima.pojo.User;
 import com.itheima.service.CartService;
-import com.itheima.utils.CookieUtil;
-import com.itheima.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -32,8 +30,7 @@ public class OrderController {
 
     @RequestMapping("/order/order-cart.shtml")
    public String create(HttpServletRequest request, Model model){
-        String ticket= CookieUtil.findTicket(request);
-        User user= RedisUtil.findUserByTicket(template,ticket);
+        User user= (User) request.getAttribute("user");
         List<Cart> cartList=cartService.queryCartByUserId(user.getId());
         model.addAttribute("carts",cartList);
        return "order-cart";

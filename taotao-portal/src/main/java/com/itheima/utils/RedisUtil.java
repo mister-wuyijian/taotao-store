@@ -3,6 +3,7 @@ package com.itheima.utils;
 import com.google.gson.Gson;
 import com.itheima.pojo.User;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.util.StringUtils;
 
 /*
  *  @项目名：  taotao-parent 
@@ -16,6 +17,10 @@ public class RedisUtil {
 
     public static User findUserByTicket(RedisTemplate template , String ticket){
         String json = (String) template.opsForValue().get(ticket);
-        return new Gson().fromJson(json , User.class);
+        User user=null;
+        if(!StringUtils.isEmpty(json)){
+            user=new Gson().fromJson(json , User.class);
+        }
+        return user;
     }
 }
