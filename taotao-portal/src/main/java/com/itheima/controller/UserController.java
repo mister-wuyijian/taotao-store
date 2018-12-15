@@ -37,6 +37,8 @@ public class UserController {
     @Reference
     private UserService userService;
 
+
+
     @Autowired
     private RedisTemplate<String,String> template;
 

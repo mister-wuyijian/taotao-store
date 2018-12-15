@@ -24,7 +24,9 @@
     <orderEntry type="library" name="Gradle: io.dubbo.springboot:spring-boot-starter-dubbo:1.0.0" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.commons:commons-lang3:3.4" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.0" level="project" />
+    <orderEntry type="library" name="Gradle: joda-time:joda-time:2.9.9" level="project" />
     <orderEntry type="module" module-name="taotao-cart-interface_main" />
+    <orderEntry type="module" module-name="taotao-order-interface_main" />
     <orderEntry type="module" module-name="taotao-interface_main" />
     <orderEntry type="module" module-name="taotao-mapper_main" />
     <orderEntry type="module" module-name="taotao-pojo_main" />
