@@ -9,10 +9,12 @@ import com.itheima.pojo.OrderItem;
 import com.itheima.pojo.OrderShipping;
 import com.itheima.service.OrderService;
 import com.itheima.service.orderUntil.redisUntil;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
 import java.util.List;
@@ -76,6 +78,21 @@ public class OrderServiceImpl implements OrderService{
         order.setOrderShipping(shipping);
 
         return  order;
+    }
+
+    @Override
+    public void clearOrder() {
+        Order order=new Order();
+        order.setStatus(6);
+        order.setCloseTime(new Date());
+
+        Example example=new Example(Order.class);
+        Example.Criteria criteria=example.createCriteria();
+        criteria.andEqualTo("status",1);
+        criteria.andEqualTo("paymentType",1);
+        criteria.andLessThan("createTime",new DateTime().minusDays(2).toDate());
+
+        orderMapper.updateByExampleSelective(order,example);
     }
 
 }

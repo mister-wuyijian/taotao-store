@@ -13,4 +13,5 @@ import com.itheima.pojo.Order;
 public interface OrderService {
     String saveOrder(Order order);
     Order queryOrderByOrderId(String orderId);
+    void clearOrder();
 }
